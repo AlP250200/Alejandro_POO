@@ -4,6 +4,11 @@ import edu.alex.reto1.process.Calculator;
 
 import java.util.Scanner;
 
+/**
+ * @author Alejandro Pérez
+ * Esta clase contiene la interfaz de linea de comando del todo el programa
+ * A su vez contiene el menu que se desplegara para el usuario
+ **/
 public class CLI {
     public static void showMenu () {
         Scanner scanner = new Scanner(System.in);
@@ -32,16 +37,16 @@ public class CLI {
                 System.out.println( num1 +"-"+num2+" es igual = " + Calculator.restaEnteros(num1,num2));
                 break;
             case 3:
-                System.out.println("Se hara la division de los numeros:"+ num1 +"/"+num2);
+                System.out.println("Se hara la division de los números:"+ num1 +"/"+num2);
                 System.out.println( num1 +"/"+num2+" es igual = " + Calculator.divisionEnteros(num1,num2));
                 break;
             case 4:
-                System.out.println("Se hara la multiplicación de los numeros "+ num1+ "*" +num2);
+                System.out.println("Se hara la multiplicación de los números "+ num1+ "*" +num2);
                 System.out.println(num1+ "*" +num2+ "es igual = " +Calculator.multiplicacionEnteros(num1,num2));
                 break;
 
             case 5:
-                System.out.println("Se sacara el modulo  de los numeros "+ num1+ "%" +num2);
+                System.out.println("Se sacara el modulo  de los números "+ num1+ "%" +num2);
                 System.out.println(num1+ "%" +num2+ "es igual = " +Calculator.moduloEnteros(num1,num2));
                 break;
             case 6:
