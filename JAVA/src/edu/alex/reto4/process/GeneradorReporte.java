@@ -2,7 +2,7 @@ package edu.alex.reto4.process;
 
 /**
  * En esta clase se incluyen todos los metodos para la generación del reporte que se necesita
- * por parte del usuario en totoal se hay tres metodos.
+ * por parte del usuario en total  hay tres metodos.
  */
 public class GeneradorReporte {
     /**
