@@ -1,15 +1,13 @@
 package edu.alex.reto4;
 
-
-import edu.alex.reto4.process.GeneradorReporte;
 import edu.alex.reto4.ui.CLI;
 
 /**
- * Esta es la clase main donde se mandan a llamar las distintas clases
- * En este caso manda a llamar la clase CLI para la ejecución del progrma solicitado
+ * Es la clase main donde simplemente se manda a llmar la clase CLI para
+ * poder ejecutar el programa
  */
 public class Main {
-    public static void  main (String []args){
-        CLI.showmenu();
+    public static void main (String []args){
+        CLI.ShowMenu();
     }
 }
