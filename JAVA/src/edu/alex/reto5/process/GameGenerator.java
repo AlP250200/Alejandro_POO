@@ -34,10 +34,9 @@ public class GameGenerator {
     }
 
     /**
-     * Este metodo contiene la logica del juego que lo hace funcional
-     * Cambia el arreglo del nivel a un arreglo de caracteres para que el
-     * usuario adivine la palabra , para recorrer el nuevo arreglo cambiado se usa
-     * un for a su vez para evalular las letras que el usuario ingresa se usa varios if
+     * Este metodo contiene la logica del juego que lo hace funciona cambia el arreglo del nivel a un arreglo de caracteres
+     * para que el usuario adivine la palabra , para recorrer el nuevo arreglo cambiado se usa un for
+     * a su vez para evalular las letras que el usuario ingresa se usa varios if
      * Por ultimo se usa un buble while para los intentos donde se puede equivocar el usuario
      * @param words
      */
