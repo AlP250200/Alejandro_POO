@@ -39,6 +39,8 @@ public class GameGenerator {
      * a su vez para evalular las letras que el usuario ingresa se usa varios if
      * Por ultimo se usa un buble while para los intentos donde se puede equivocar el usuario
      * @param words
+     * Usa como parametro el arreglo de tipo String llamado words que se usa para almacenar el arreglo de cada nivel
+
      */
     public static void GameLogicInitiator(String[] words) {
         String word = words[(int) (Math.random() * words.length)];
