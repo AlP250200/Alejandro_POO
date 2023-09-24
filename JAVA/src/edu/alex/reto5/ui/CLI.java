@@ -1,6 +1,6 @@
-package edu.alex.reto4.ui;
+package edu.alex.reto5.ui;
 
-import edu.alex.reto4.process.GameGenerator;
+import edu.alex.reto5.process.GameGenerator;
 
 import java.util.Scanner;
 

@@ -1,6 +1,6 @@
-package edu.alex.reto4;
+package edu.alex.reto5;
 
-import edu.alex.reto4.ui.CLI;
+import edu.alex.reto5.ui.CLI;
 
 /**
  * Es la clase main donde simplemente se manda a llmar la clase CLI para
