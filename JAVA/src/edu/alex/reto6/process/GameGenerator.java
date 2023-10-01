@@ -1,4 +1,4 @@
-package edu.alex.reto5.process;
+package edu.alex.reto6.process;
 
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ public class GameGenerator {
      */
     public static void  beginnerLevel() {
         String[] easyWords = {"lago"};
-        GameLogicInitiator(easyWords);
+        playGameLogicInitiator(easyWords);
     }
 
     /**
@@ -22,7 +22,7 @@ public class GameGenerator {
      */
     public static void intermediateLevel() {
         String[] intermediateWords = { "television" };
-        GameLogicInitiator(intermediateWords);
+        playGameLogicInitiator(intermediateWords);
     }
     /**
      * En este metodo solo contiene el arreglo para la palabra del nivel avanzado
@@ -30,7 +30,7 @@ public class GameGenerator {
      */
     public static void advancedLevel() {
         String[] advancedWords = {"automatizar"};
-        GameLogicInitiator(advancedWords);
+        playGameLogicInitiator(advancedWords);
     }
 
     /**
@@ -40,9 +40,10 @@ public class GameGenerator {
      * Por ultimo se usa un buble while para los intentos donde se puede equivocar el usuario
      * @param words
      * Usa como parametro el arreglo de tipo String llamado words que se usa para almacenar el arreglo de cada nivel
-
+     * Se agrego una excepción para solo dar letras validas o el 0 para cerrar el juego
+     * ADEMAS DE DAR MENSAJES DE ERROR ADECUADOS PARA EL USUARIO
      */
-    public static void GameLogicInitiator(String[] words) {
+    public static void playGameLogicInitiator(String[] words) {
         String word = words[(int) (Math.random() * words.length)];
         Scanner scanner = new Scanner(System.in);
         char[] guessedWord = new char[word.length()];
@@ -53,27 +54,43 @@ public class GameGenerator {
         int attempts = 4;
 
         while (attempts > 0) {
-            System.out.println("Palabra: " + String.valueOf(guessedWord));
-            System.out.println("Intentos restantes: " + attempts);
-            System.out.print("Ingresa una letra: ");
-            char guess = scanner.next().charAt(0);
+            try {
+                System.out.println("Palabra: " + String.valueOf(guessedWord));
+                System.out.println("Intentos restantes: " + attempts);
+                System.out.print("Ingresa una letra o presiona 0 para salir: ");
+                String input = scanner.next();
 
-            boolean found = false;
-            for (int i = 0; i < word.length(); i++) {
-                if (word.charAt(i) == guess) {
-                    guessedWord[i] = guess;
-                    found = true;
+                // Manejar el caso de salida (0)
+                if (input.equals("0")) {
+                    System.out.println("Juego terminado. ¡Hasta luego!");
+                    break;
                 }
-            }
 
-            if (!found) {
-                attempts--;
-                System.out.println("Letra incorrecta.");
-            }
+                if (input.length() != 1 || !Character.isLetter(input.charAt(0))) {
+                    throw new IllegalArgumentException("Ingresa una sola letra válida o presiona 0 para salir.");
+                }
 
-            if (String.valueOf(guessedWord).equals(word)) {
-                System.out.println("¡Has adivinado la palabra!");
-                break;
+                char guess = input.charAt(0);
+
+                boolean found = false;
+                for (int i = 0; i < word.length(); i++) {
+                    if (word.charAt(i) == guess) {
+                        guessedWord[i] = guess;
+                        found = true;
+                    }
+                }
+
+                if (!found) {
+                    attempts--;
+                    System.out.println("Letra incorrecta.");
+                }
+
+                if (String.valueOf(guessedWord).equals(word)) {
+                    System.out.println("¡Has adivinado la palabra!");
+                    break;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
             }
         }
 
