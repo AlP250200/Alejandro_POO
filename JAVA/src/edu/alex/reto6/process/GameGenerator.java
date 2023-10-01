@@ -41,7 +41,7 @@ public class GameGenerator {
      * @param words
      * Usa como parametro el arreglo de tipo String llamado words que se usa para almacenar el arreglo de cada nivel
      * Se agrego una excepción para solo dar letras validas o el 0 para cerrar el juego
-     * ADEMAS DE DAR MENSAJES DE ERROR ADECUADOS PARA EL USUARIO
+     * ADEMAS DE DAR MENSAJE DE ERROR ADECUADO PARA EL USUARIO
      */
     public static void playGameLogicInitiator(String[] words) {
         String word = words[(int) (Math.random() * words.length)];

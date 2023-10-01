@@ -16,7 +16,7 @@ public class CLI {
      * menu donde muestra las opciones de nivel además de un swicth en donde cada case
      *  manda a llmar la clase GameGenerator y sus metodos
      *  Se agrega una excepción para cuando el usuario ingrese una opcion no valida de los niveles
-     *  Ademas de un mensjae de guia para que el usuario sepa de su error
+     *  Ademas de un mensajae de guia para que el usuario sepa de su error
      */
     public static void ShowMenu () {
         Scanner scanner = new Scanner(System.in);
@@ -50,8 +50,7 @@ public class CLI {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Error: Ingresa un número válido.");
-                scanner.next(); // Limpiar el búfer de entrada
-                opciones = -1; // Establecer un valor inválido para volver a solicitar la entrada
+                scanner.next();
             } catch (IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage());
             }
