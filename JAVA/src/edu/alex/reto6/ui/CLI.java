@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  * En esta clase esta la interfaz que se le mostrara al usuario a su vez manda a llmar la clase
- * GameGenerator, a su vez esta clase contiene un metodo
+ * GameGenerator, a su vez esta clase contiene un metodo llamado ShowMenu
  */
 public class CLI {
     /**
