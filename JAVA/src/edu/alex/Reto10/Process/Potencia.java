@@ -15,7 +15,6 @@ public class Potencia extends Multiplicacion{
      */
     @Override
     public double calcular(double num1, double num2) {
-        // Utilizando Multiplicacion para calcular la Potencia
         double resultado = 1;
         for (int i = 0; i < num2; i++) {
             resultado = super.calcular(resultado,num2);
