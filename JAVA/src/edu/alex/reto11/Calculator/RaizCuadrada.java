@@ -1,7 +1,15 @@
 package edu.alex.reto11.Calculator;
-
+/**
+ * La clase RaizCuadrada extiende la clase Potencia y proporciona una implementación para calcular la raíz cuadrada de un número.
+ */
 public class RaizCuadrada extends Potencia{
-
+    /**
+     * Calcula la raíz cuadrada de un número utilizando un enfoque iterativo.
+     *
+     * @param num1 El número del cual se desea calcular la raíz cuadrada.
+     * @param num2 El parámetro adicional que se utiliza en el cálculo (no está claro su propósito).
+     * @return La raíz cuadrada del número num1.
+     */
     @Override
     public double calcular(double num1, double num2) {
         double resultado = 0;
@@ -19,10 +27,11 @@ public class RaizCuadrada extends Potencia{
         return base;
     }
     /**
-     * Obtiene el símbolo representativo de la operación.
+     * Obtiene el símbolo asociado a la operación de raíz cuadrada.
      *
-     * @return Cadena de texto que representa el símbolo de la raíz cuadrada, que es "sqrt".
-            */
+     * @return El símbolo "sqrt" que representa la raíz cuadrada.
+     */
+
     @Override
     public String getSimbolo() {
         return "sqrt";
