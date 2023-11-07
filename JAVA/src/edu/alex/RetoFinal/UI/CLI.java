@@ -9,8 +9,7 @@ public class CLI {
         System.out.println("Bienvenido al Juego de Gato");
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Selecciona el idioma (English o Español):");
-        String idioma = scanner.nextLine();
+
         System.out.println("Selecciona el tamaño del tablero (3 o 4):");
         int tamañoTablero = scanner.nextInt();
 
@@ -32,7 +31,7 @@ public class CLI {
             return;
         }
 
-        Gato juego = factory.crearJuego(idioma, tamañoTablero);
+        Gato juego = factory.crearJuego( tamañoTablero);
         juego.jugar();
 
         scanner.close();

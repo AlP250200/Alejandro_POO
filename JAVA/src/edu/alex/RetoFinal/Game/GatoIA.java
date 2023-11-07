@@ -4,8 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GatoIA  extends Gato{
-    public GatoIA(String idioma, int tamañoTablero) {
-        super(idioma, tamañoTablero);
+    public GatoIA( int tamañoTablero) {
+        super(tamañoTablero);
     }
 
     @Override
@@ -17,11 +17,11 @@ public class GatoIA  extends Gato{
             int fila, columna;
 
             if (jugadorActual == 'X') {
-                System.out.println(idioma + " Turno del jugador X");
+                System.out.println( " Turno del jugador X");
                 fila = pedirCoordenada("Fila: ", scanner);
                 columna = pedirCoordenada("Columna: ", scanner);
             } else {
-                System.out.println(idioma + " Turno del jugador O (IA)");
+                System.out.println( " Turno del jugador O (IA)");
                 if (jugadorActual == 'O') {
                     int[] movimientoIA = movimientoIA();
                     fila = movimientoIA[0];
@@ -37,16 +37,16 @@ public class GatoIA  extends Gato{
                 tablero[fila][columna] = jugadorActual;
                 if (haGanado()) {
                     imprimirTablero();
-                    System.out.println(idioma + " ¡El jugador " + jugadorActual + " ha ganado!");
+                    System.out.println( " ¡El jugador " + jugadorActual + " ha ganado!");
                     break;
                 } else if (tableroLleno()) {
                     imprimirTablero();
-                    System.out.println(idioma + " ¡Es un empate!");
+                    System.out.println(" ¡Es un empate!");
                     break;
                 }
                 jugadorActual = (jugadorActual == 'X') ? 'O' : 'X';
             } else {
-                System.out.println(idioma + " Movimiento no válido. Inténtalo de nuevo.");
+                System.out.println(" Movimiento no válido. Inténtalo de nuevo.");
             }
         }
 
@@ -56,7 +56,7 @@ public class GatoIA  extends Gato{
     private int pedirCoordenada(String mensaje, Scanner scanner) {
         System.out.print(mensaje);
         while (!scanner.hasNextInt()) {
-            System.out.println(idioma + " Ingrese un número válido.");
+            System.out.println(" Ingrese un número válido.");
             System.out.print(mensaje);
             scanner.next();
         }

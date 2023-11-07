@@ -3,10 +3,10 @@ package edu.alex.RetoFinal.Game;
 public abstract class Gato {
     protected char[][] tablero;
     protected char jugadorActual;
-    protected String idioma;
 
-    public Gato(String idioma, int tamañoTablero) {
-        this.idioma = idioma;
+
+    public Gato( int tamañoTablero) {
+
         this.tablero = new char[tamañoTablero][tamañoTablero];
         this.jugadorActual = 'X';
         inicializarTablero();
