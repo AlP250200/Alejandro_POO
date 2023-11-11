@@ -69,6 +69,8 @@ public class EnglishLanguage  implements  Language{
                 return "Raising: ";
             case "Calculating the square root of: ":
                 return "Calculating the square root of: ";
+            case "Do you want to see the arithmetic operations performed so far? (s/S):":
+                return  "Do you want to see the arithmetic operations performed so far? (y/n):";
             default:
                 return "Message not found";
         }

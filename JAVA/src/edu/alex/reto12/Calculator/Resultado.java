@@ -48,7 +48,10 @@ public class Resultado {
     public String obtenerMensaje() {
         String simbolo = operacion.getSimbolo();
         String operacionStr = obtenerDescripcionOperacion(simbolo);
-        String mensaje = String.format("%s, %s, %s, %s, %s, %s",
+        /**
+         *  Crea un mensaje formateado con información sobre la operación y su resultado.
+         */
+        String mensaje = String.format("%s, %s, %s, %s, %s, %s%n",
                 operacionStr,
                 num1,
                 simbolo,
@@ -56,11 +59,15 @@ public class Resultado {
                 LanguageFactory.getMessage("is"),
                 obtenerResultado());
 
-        // Utiliza el path deseado antes del try/catch
+        /**
+         *  Utiliza el path deseado antes del try/catch
+         */
         Path path = Paths.get("operaciones2.txt");
 
         try {
-            // Utiliza Files.write con StandardOpenOption.APPEND
+            /**
+             *  Escribe el mensaje en el archivo, utilizando Files.write con StandardOpenOption.APPEND.
+             */
             Files.write(path, mensaje.getBytes(), StandardOpenOption.APPEND, StandardOpenOption.CREATE);
         } catch (IOException e) {
             e.printStackTrace();

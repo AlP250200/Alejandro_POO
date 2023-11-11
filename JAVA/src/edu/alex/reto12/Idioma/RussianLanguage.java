@@ -62,6 +62,8 @@ public class RussianLanguage implements  Language{
                 return "Райзинг:";
             case "Calculating the square root of: ":
                 return "Вычисление квадратного корня из:";
+            case "Do you want to see the arithmetic operations performed so far? (s/S):":
+                return  "Хотите посмотреть выполненные арифметические операции до сих пор? (да/нет)";
 
             default:
                 return "Сообщение не найдено";

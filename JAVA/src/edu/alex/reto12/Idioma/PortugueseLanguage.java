@@ -69,6 +69,8 @@ public class PortugueseLanguage implements Language{
                 return "Levantamento";
             case "Calculating the square root of: ":
                 return "Calcular a raiz quadrada de:";
+            case "Do you want to see the arithmetic operations performed so far? (s/S):":
+                return  "Você deseja ver as operações aritméticas realizadas até agora? (s/S):";
 
             default:
                 return "Mensagem não encontrada";

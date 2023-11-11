@@ -69,6 +69,8 @@ public class JapaneseLanguage implements Language{
                 return "育てる：";
             case "Calculating the square root of: ":
                 return "の平方根を計算する：";
+            case "Do you want to see the arithmetic operations performed so far? (s/S):":
+                return  "これまでに行われた算術演算を見たいですか？（はい／いいえ）";
             default:
                 return "メッセージが見つかりません";
         }

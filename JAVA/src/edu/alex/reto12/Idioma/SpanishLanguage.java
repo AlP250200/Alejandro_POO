@@ -69,6 +69,8 @@ public class SpanishLanguage  implements Language{
                 return "Elevando: ";
             case "Calculating the square root of: ":
                 return "Calculando la raiz cuadrada de: ";
+            case "Do you want to see the arithmetic operations performed so far? (s/S):":
+                return  "¿Desea ver las operaciones aritméticas realizadas hasta ahora? (s/S)";
             default:
                 return "Mensaje no encontrado";
         }

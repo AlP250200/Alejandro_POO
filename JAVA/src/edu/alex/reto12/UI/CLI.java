@@ -3,9 +3,12 @@ package edu.alex.reto12.UI;
 import edu.alex.reto12.Calculator.*;
 import edu.alex.reto12.Idioma.LanguageFactory;
 
+
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -37,11 +40,21 @@ public class CLI {
          */
 
         LanguageFactory.setLanguage(idiomaSeleccionado);
-        System.out.print("¿Desea ver las operaciones aritméticas realizadas hasta ahora? (s/n): ");
+        System.out.print(LanguageFactory.getMessage("Do you want to see the arithmetic operations performed so far? (s/S):"));
         char verOperaciones = scanner.next().charAt(0);
+        /**
+         * Aqui se hace la pregunta al usuario si quiere ver las operaciones realizadas hasta ese momento en el bloc de
+         * Notas
+         */
+
+        Path path = Paths.get("operaciones2.txt");
 
         if (verOperaciones == 's' || verOperaciones == 'S') {
-
+            try {
+                Desktop.getDesktop().open(path.toFile());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         do {
@@ -127,13 +140,24 @@ public class CLI {
             System.out.print(LanguageFactory.getMessage("operation_description"));
             System.out.println(resultado.obtenerResultado());
             System.out.println(LanguageFactory.getMessage("result") + resultado.obtenerMensaje());
-            System.out.print("¿Desea ver las operaciones aritméticas realizadas hasta ahora? (s/n): ");
+            /**
+             * Aqui vuelve a preguntar cada que se hace una operacion aritmetica y si quiere el usuario abre el archivo
+             * txt
+             */
+            System.out.print(LanguageFactory.getMessage("Do you want to see the arithmetic operations performed so far? (s/S):"));
             verOperaciones = scanner.next().charAt(0);
 
+
             if (verOperaciones == 's' || verOperaciones == 'S') {
-                // Aquí puedes mostrar las operaciones realizadas hasta ahora
-                System.out.println("Mostrar operaciones realizadas...");
+                try {
+                    Desktop.getDesktop().open(path.toFile());
+                } catch (IOException e) {
+                    e.printStackTrace(); // Maneja la excepción imprimiendo la traza en la consola.
+                }
             }
+
+
+
 
             System.out.println(LanguageFactory.getMessage("continue"));
             continuar = scanner.next().charAt(0);
