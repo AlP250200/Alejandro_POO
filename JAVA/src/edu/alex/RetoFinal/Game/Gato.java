@@ -1,5 +1,7 @@
 package edu.alex.RetoFinal.Game;
 
+import edu.alex.RetoFinal.Idioma.LanguageFactory;
+
 public abstract class Gato {
     protected char[][] tablero;
     protected char jugadorActual;
@@ -15,13 +17,14 @@ public abstract class Gato {
     public abstract void jugar();
 
     protected void imprimirTablero() {
-        System.out.println("\nTablero Actual:");
+        System.out.println(LanguageFactory.getMessage("BoardCurrent"));
         for (char[] fila : tablero) {
             for (char c : fila) {
                 System.out.print(c);
                 System.out.print(" | ");
             }
             System.out.println();
+
         }
     }
 

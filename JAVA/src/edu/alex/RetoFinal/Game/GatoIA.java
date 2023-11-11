@@ -1,53 +1,63 @@
 package edu.alex.RetoFinal.Game;
 
+import edu.alex.RetoFinal.Idioma.LanguageFactory;
+
 import java.util.Random;
 import java.util.Scanner;
 
 public class GatoIA  extends Gato{
-    public GatoIA( int tamañoTablero) {
+    public GatoIA(int tamañoTablero) {
         super(tamañoTablero);
+        Random random = new Random();
+        jugadorActual = random.nextBoolean() ? 'O' : 'X';
     }
 
     @Override
     public void jugar() {
+        Random random = new Random();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
             imprimirTablero();
-            int fila, columna;
 
-            if (jugadorActual == 'X') {
-                System.out.println( " Turno del jugador X");
-                fila = pedirCoordenada("Fila: ", scanner);
-                columna = pedirCoordenada("Columna: ", scanner);
-            } else {
-                System.out.println( " Turno del jugador O (IA)");
-                if (jugadorActual == 'O') {
-                    int[] movimientoIA = movimientoIA();
-                    fila = movimientoIA[0];
-                    columna = movimientoIA[1];
+            if (jugadorActual == 'O') {
+                System.out.println(LanguageFactory.getMessage("TurnIA"));
+                int[] movimientoIA = movimientoIA();
+                int fila = movimientoIA[0];
+                int columna = movimientoIA[1];
+                if (movimientoValido(fila, columna)) {
+                    tablero[fila][columna] = jugadorActual;
+                    if (haGanado()) {
+                        imprimirTablero();
+                        System.out.println(LanguageFactory.getMessage("GameWin"));
+                        break;
+                    } else if (tableroLleno()) {
+                        imprimirTablero();
+                        System.out.println(LanguageFactory.getMessage("GameDraw"));
+                        break;
+                    }
+                }
+            } else if (jugadorActual == 'X') {
+                System.out.println(LanguageFactory.getMessage("TurnPlayer"));
+                int fila = pedirCoordenada("Row: ", scanner);
+                int columna = pedirCoordenada("Column: ", scanner);
+                if (movimientoValido(fila, columna)) {
+                    tablero[fila][columna] = jugadorActual;
+                    if (haGanado()) {
+                        imprimirTablero();
+                        System.out.println(LanguageFactory.getMessage("GameWin"));
+                        break;
+                    } else if (tableroLleno()) {
+                        imprimirTablero();
+                        System.out.println(LanguageFactory.getMessage("GameDraw"));
+                        break;
+                    }
                 } else {
-                    int[] movimientoIA = movimientoIA();
-                    fila = movimientoIA[0];
-                    columna = movimientoIA[1];
+                    System.out.println(LanguageFactory.getMessage("MoveInvalid"));
                 }
             }
 
-            if (movimientoValido(fila, columna)) {
-                tablero[fila][columna] = jugadorActual;
-                if (haGanado()) {
-                    imprimirTablero();
-                    System.out.println( " ¡El jugador " + jugadorActual + " ha ganado!");
-                    break;
-                } else if (tableroLleno()) {
-                    imprimirTablero();
-                    System.out.println(" ¡Es un empate!");
-                    break;
-                }
-                jugadorActual = (jugadorActual == 'X') ? 'O' : 'X';
-            } else {
-                System.out.println(" Movimiento no válido. Inténtalo de nuevo.");
-            }
+            jugadorActual = (jugadorActual == 'X') ? 'O' : 'X';
         }
 
         scanner.close();
@@ -56,7 +66,7 @@ public class GatoIA  extends Gato{
     private int pedirCoordenada(String mensaje, Scanner scanner) {
         System.out.print(mensaje);
         while (!scanner.hasNextInt()) {
-            System.out.println(" Ingrese un número válido.");
+            System.out.println(LanguageFactory.getMessage("MoveValid"));
             System.out.print(mensaje);
             scanner.next();
         }
