@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CLI {
-    public static void runGame(){
+    public static void runGame() {
         Scanner scanner = new Scanner(System.in);
         ScoreBoard scoreboard = new ScoreBoard();
-
 
         while (true) {
             System.out.println("Welcome to Tic-Tac-Toe!");
@@ -34,11 +33,19 @@ public class CLI {
 
             int gameModeChoice = scanner.nextInt();
 
-            // Creación de instancias de jugador, tablero y juego
             Player player1 = new Player(playerName, 'X');
-            Player player2 = (gameModeChoice == 1) ? new Player("Player 2", 'O') : new IAPlayer('O');
-            Board board = new Board(3); // Tamaño predeterminado del tablero 3x3
+            Player player2;
 
+            if (gameModeChoice == 1) {
+                scanner.nextLine(); // Consume el newline
+                System.out.println("Enter Player 2's name: ");
+                String player2Name = scanner.nextLine();
+                player2 = new Player(player2Name, 'O');
+            } else {
+                player2 = new IAPlayer('O');
+            }
+
+            Board board = new Board(3); // Tamaño predeterminado del tablero 3x3
             TicTacToeGame game = new TicTacToeGame(player1, player2, board);
             game.play();
 
@@ -47,7 +54,6 @@ public class CLI {
             scoreboard.updateScore(player2);
             scoreboard.saveScoresToFile();
             scoreboard.displayRankings();
-
 
             // Display scores
             System.out.println("Scores:");

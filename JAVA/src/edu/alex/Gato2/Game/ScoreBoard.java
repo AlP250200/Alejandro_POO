@@ -27,8 +27,13 @@ public class ScoreBoard {
 
     public void saveScoresToFile() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(SCORES_FILE))) {
-            for (Player player : players) {
-                writer.println(player.getName() + ": " + player.getScore());
+            List<Player> rankedPlayers = getRankedPlayers();
+            int rank = 1;
+            for (Player player : rankedPlayers) {
+                if (!player.getName().equals("Computer")) {
+                    writer.println(rank + ": " + player.getName() + ": " + player.getScore());
+                    rank++;
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
