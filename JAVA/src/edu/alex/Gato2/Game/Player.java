@@ -22,10 +22,11 @@ public class Player {  private String name;
         return score;
     }
 
-    public void incrementScore() {
-        score++;
+    public void incrementScore(int points) {
+        this.score+= points;
     }
     public void setScore(int score) {
         this.score = score;
     }
+
 }

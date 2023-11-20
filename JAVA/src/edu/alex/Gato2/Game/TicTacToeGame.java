@@ -59,7 +59,6 @@ public class TicTacToeGame {
     private boolean isGameOver() {
         if (board.isWinner(currentPlayer.getSymbol())) {
             System.out.println(currentPlayer.getName() + " wins!");
-            currentPlayer.incrementScore();
             return true;
         } else if (board.isFull()) {
             System.out.println("It's a draw!");
@@ -71,5 +70,14 @@ public class TicTacToeGame {
     private void displayResult() {
         board.display();
         System.out.println("Game over!");
+
+        if (board.isWinner(currentPlayer.getSymbol())) {
+            System.out.println(currentPlayer.getName() + " wins!");
+            currentPlayer.incrementScore(3); // Incremento de 3 puntos por victoria
+        } else if (board.isFull()) {
+            System.out.println("It's a draw!");
+            player1.incrementScore(1); // Ambos jugadores obtienen 1 punto por empate
+            player2.incrementScore(1);
+        }
     }
 }
