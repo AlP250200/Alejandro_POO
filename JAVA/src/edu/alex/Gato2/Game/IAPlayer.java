@@ -13,7 +13,6 @@ public class IAPlayer  extends Player{
     public void makeMove(Board board) {
         int size = board.getSize();
 
-        // First, check if the computer can win in the next move
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (!board.isCellOccupied(i, j)) {
@@ -26,7 +25,6 @@ public class IAPlayer  extends Player{
             }
         }
 
-        // Then, check if the player can win in the next move and block them
         char opponentSymbol = (getSymbol() == 'X') ? 'O' : 'X';
 
         for (int i = 0; i < size; i++) {
@@ -42,7 +40,6 @@ public class IAPlayer  extends Player{
             }
         }
 
-        // If no immediate win or block, make a strategic move
         int row, col;
 
         do {

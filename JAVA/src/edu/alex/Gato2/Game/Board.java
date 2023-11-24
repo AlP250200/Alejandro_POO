@@ -17,21 +17,32 @@ public class Board {
     }
 
     public void display() {
+        System.out.print("  ");
+        for (int i = 1; i <= grid.length; i++) {
+            System.out.print(i + "   ");
+        }
+        System.out.println();
+
         for (int i = 0; i < grid.length; i++) {
+            System.out.print((i + 1) + " ");
             for (int j = 0; j < grid[i].length; j++) {
                 System.out.print(grid[i][j]);
                 if (j < grid[i].length - 1) {
-                    System.out.print(" | "); // Agrega una barra vertical entre columnas
+                    System.out.print(" | ");
                 }
             }
             System.out.println();
 
             if (i < grid.length - 1) {
-                System.out.println("---------"); // Agrega una línea divisoria entre filas
+                System.out.print("  ");
+                for (int k = 0; k < grid.length * 4 - 1; k++) {
+                    System.out.print("-");
+                }
+                System.out.println();
             }
         }
 
-        System.out.println();  // Agrega una línea en blanco adicional después del tablero
+        System.out.println();
     }
 
     public boolean isCellOccupied(int row, int col) {
@@ -54,14 +65,12 @@ public class Board {
     }
 
     public boolean isWinner(char symbol) {
-        // Check rows and columns
         for (int i = 0; i < grid.length; i++) {
             if (checkLine(grid[i], symbol) || checkLine(getColumn(i), symbol)) {
                 return true;
             }
         }
 
-        // Check diagonals
         return checkLine(getDiagonal(true), symbol) || checkLine(getDiagonal(false), symbol);
     }
 

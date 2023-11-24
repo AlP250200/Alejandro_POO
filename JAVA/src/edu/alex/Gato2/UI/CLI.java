@@ -32,7 +32,7 @@ public class CLI {
             System.out.println("2. Player vs. Computer");
 
             int gameModeChoice = scanner.nextInt();
-            scanner.nextLine(); // Consume el newline
+            scanner.nextLine();
 
             Player player1 = new Player(playerName, 'X');
             Player player2;
