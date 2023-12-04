@@ -1,3 +1,4 @@
-1: Alex: 9 puntos
-2: Juan: 6 puntos
-3: Pedro: 0 puntos
+1: Alex: 15 puntos
+2: Juan: 7 puntos
+3: Pedrito: 1 puntos
+4: Pedro: 0 puntos

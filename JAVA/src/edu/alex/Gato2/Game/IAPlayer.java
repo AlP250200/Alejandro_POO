@@ -12,7 +12,9 @@ public class IAPlayer  extends Player{
 
     public void makeMove(Board board) {
         int size = board.getSize();
+        char opponentSymbol = (getSymbol() == 'X') ? 'O' : 'X';
 
+        // Lógica para ganar
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (!board.isCellOccupied(i, j)) {
@@ -25,8 +27,7 @@ public class IAPlayer  extends Player{
             }
         }
 
-        char opponentSymbol = (getSymbol() == 'X') ? 'O' : 'X';
-
+        // Lógica para bloquear al oponente
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (!board.isCellOccupied(i, j)) {
@@ -40,13 +41,22 @@ public class IAPlayer  extends Player{
             }
         }
 
-        int row, col;
-
-        do {
-            row = random.nextInt(size);
-            col = random.nextInt(size);
-        } while (board.isCellOccupied(row, col));
-
-        board.markCell(row, col, getSymbol());
+        // Lógica para buscar movimiento que lleve al empate
+        if (!board.isCellOccupied(1, 1)) {
+            board.markCell(1, 1, getSymbol());
+            return;
+        } else {
+            // Si no es posible hacer un movimiento que lleve al empate,
+            // buscar un espacio vacío y hacer un movimiento allí.
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    if (!board.isCellOccupied(i, j)) {
+                        board.markCell(i, j, getSymbol());
+                        return;
+                    }
+                }
+            }
+        }
     }
 }
+

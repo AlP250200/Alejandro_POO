@@ -1,7 +1,9 @@
 package edu.alex.Gato2.UI;
 
 import edu.alex.Gato2.Game.*;
+import edu.alex.Gato2.UI.Idioma.LanguageFactory;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,39 +11,62 @@ public class CLI {
     public static void runGame() {
         Scanner scanner = new Scanner(System.in);
         ScoreBoard scoreboard = new ScoreBoard();
+        int idiomaSeleccionado= 0;
 
         while (true) {
-            System.out.println("Welcome to Tic-Tac-Toe!");
-            System.out.println("Select language / Selecciona idioma:");
-            System.out.println("1. English");
-            System.out.println("2. Español");
+            try {
+                System.out.println("Seleccione el idioma (Select the language):");
+                System.out.println("1. Español");
+                System.out.println("2. English");
+                idiomaSeleccionado = scanner.nextInt();
 
-            int languageChoice = scanner.nextInt();
-            scanner.nextLine(); // Consume el newline
 
-            String playerName;
-            if (languageChoice == 1) {
-                System.out.println("Enter your name: ");
-            } else {
-                System.out.println("Ingresa tu nombre: ");
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Por favor, ingrese un número válido.");
+                scanner.next();
             }
-            playerName = scanner.nextLine();
+        }
 
-            System.out.println("Select game mode / Selecciona modo de juego:");
-            System.out.println("1. Player vs. Player");
-            System.out.println("2. Player vs. Computer");
+        LanguageFactory.setLanguage(idiomaSeleccionado);
 
-            int gameModeChoice = scanner.nextInt();
-            scanner.nextLine();
+        while (true) {
+            int gameModeChoice = 0;
+            while (true) {
+                try {
+                    System.out.println(LanguageFactory.getMessage("game_mode"));
+                    System.out.println(LanguageFactory.getMessage("Human"));
+                    System.out.println(LanguageFactory.getMessage("IA"));
 
-            Player player1 = new Player(playerName, 'X');
+                    gameModeChoice = scanner.nextInt();
+                    scanner.nextLine();
+
+                    if (gameModeChoice != 1 && gameModeChoice != 2) {
+                        throw new IllegalArgumentException();
+                    }
+
+                    break;
+                } catch (InputMismatchException | IllegalArgumentException e) {
+                    System.out.println(LanguageFactory.getMessage("Invalid_choice"));
+                    scanner.next();
+                }
+            }
+
+            Player player1;
             Player player2;
 
             if (gameModeChoice == 1) {
-                System.out.println("Enter Player 2's name: ");
+                System.out.println(LanguageFactory.getMessage("Enter_name_Player"));
+                String player1Name = scanner.nextLine();
+                player1 = new Player(player1Name, 'X');
+
+                System.out.println(LanguageFactory.getMessage("Enter_name_Player2"));
                 String player2Name = scanner.nextLine();
                 player2 = new Player(player2Name, 'O');
             } else {
+                System.out.println(LanguageFactory.getMessage("Enter_name"));
+                String playerName = scanner.nextLine();
+                player1 = new Player(playerName, 'X');
                 player2 = new IAPlayer('O');
             }
 
@@ -57,10 +82,10 @@ public class CLI {
             System.out.println("Scores:");
             List<Player> rankedPlayers = scoreboard.getRankedPlayers();
             for (Player player : rankedPlayers) {
-                System.out.println(player.getName() + ": " + player.getScore() + " points");
+                System.out.println(player.getName() + ": " + player.getScore() + LanguageFactory.getMessage("Points"));
             }
 
-            System.out.println("Do you want to play again? (yes/no): ");
+            System.out.println(LanguageFactory.getMessage("Loop"));
             String playAgain = scanner.nextLine().toLowerCase();
 
             if (!playAgain.equals("yes")) {
@@ -69,6 +94,6 @@ public class CLI {
         }
 
         scanner.close();
-
     }
+
 }

@@ -1,5 +1,8 @@
 package edu.alex.Gato2.Game;
 
+import edu.alex.Gato2.UI.Idioma.LanguageFactory;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TicTacToeGame {
@@ -34,19 +37,30 @@ public class TicTacToeGame {
         displayResult();
     }
 
+
     private void makeMove() {
         if (currentPlayer instanceof IAPlayer) {
             iaPlayer.makeMove(board);
         } else {
-            System.out.println(currentPlayer.getName() + "'s turn. Enter row and column (e.g., 1 2): ");
-            int row = scanner.nextInt() - 1;
-            int col = scanner.nextInt() - 1;
+            int row = -1, col = -1;
+            boolean isValidInput = false;
 
-            while (row < 0 || row >= board.getSize() || col < 0 || col >= board.getSize() || board.isCellOccupied(row, col)) {
-                System.out.println("Invalid move. Try again: ");
-                row = scanner.nextInt() - 1;
-                col = scanner.nextInt() - 1;
-            }
+            do {
+                try {
+                    System.out.print(currentPlayer.getName() + " " + LanguageFactory.getMessage("Player's_turn.") + ": ");
+                    row = scanner.nextInt() - 1;
+                    col = scanner.nextInt() - 1;
+                    isValidInput = true;
+
+                    if (row < 0 || row >= board.getSize() || col < 0 || col >= board.getSize() || board.isCellOccupied(row, col)) {
+                        System.out.println(LanguageFactory.getMessage("Invalid_move"));
+                        isValidInput = false;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter a number.");
+                    scanner.nextLine();
+                }
+            } while (!isValidInput);
 
             board.markCell(row, col, currentPlayer.getSymbol());
         }
@@ -58,10 +72,10 @@ public class TicTacToeGame {
 
     private boolean isGameOver() {
         if (board.isWinner(currentPlayer.getSymbol())) {
-            System.out.println(currentPlayer.getName() + " wins!");
+            System.out.println(currentPlayer.getName() + " "+ LanguageFactory.getMessage("Win"));
             return true;
         } else if (board.isFull()) {
-            System.out.println("It's a draw!");
+            System.out.println(LanguageFactory.getMessage("Draw"));
             return true;
         }
         return false;
@@ -73,10 +87,10 @@ public class TicTacToeGame {
 
         if (board.isWinner(currentPlayer.getSymbol())) {
             System.out.println(currentPlayer.getName() + " wins!");
-            currentPlayer.incrementScore(3); // Incremento de 3 puntos por victoria
+            currentPlayer.incrementScore(3);
         } else if (board.isFull()) {
-            System.out.println("It's a draw!");
-            player1.incrementScore(1); // Ambos jugadores obtienen 1 punto por empate
+            System.out.println(LanguageFactory.getMessage("Draw"));
+            player1.incrementScore(1);
             player2.incrementScore(1);
         }
     }

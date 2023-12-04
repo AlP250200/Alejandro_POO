@@ -13,16 +13,16 @@ public class ScoreBoard {
 
     public ScoreBoard() {
         playerMap = new HashMap<>();
-        loadScoresFromFile();  // Cargar puntuaciones al iniciar
+        loadScoresFromFile();
     }
 
     public void updateScore(Player player) {
         String playerName = player.getName();
         if (playerMap.containsKey(playerName)) {
             Player existingPlayer = playerMap.get(playerName);
-            existingPlayer.setScore(existingPlayer.getScore() + player.getScore()); // Acumular el puntaje
+            existingPlayer.setScore(existingPlayer.getScore() + player.getScore());
         } else {
-            playerMap.put(playerName, player); // Agregar nuevo jugador al mapa
+            playerMap.put(playerName, player);
         }
     }
 
@@ -56,14 +56,14 @@ public class ScoreBoard {
                 String[] parts = line.split(": ");
                 if (parts.length == 3) {
                     String playerName = parts[1];
-                    int score = Integer.parseInt(parts[2].split(" ")[0]); // Obtener puntaje como entero
-                    Player player = new Player(playerName, '-');  // Se usa '-' como marcador temporal
+                    int score = Integer.parseInt(parts[2].split(" ")[0]);
+                    Player player = new Player(playerName, '-');
                     player.setScore(score);
-                    playerMap.put(playerName, player); // Agregar jugador al mapa
+                    playerMap.put(playerName, player);
                 }
             }
         } catch (IOException | NumberFormatException e) {
-            // Manejar excepciones según sea necesario
+
             e.printStackTrace();
         }
     }
