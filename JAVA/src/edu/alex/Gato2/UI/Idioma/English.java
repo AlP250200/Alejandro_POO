@@ -1,6 +1,14 @@
 package edu.alex.Gato2.UI.Idioma;
-
+/**
+ * La clase English implementa la interfaz Language para proporcionar mensajes en inglés.
+ * Define los mensajes correspondientes a claves específicas en inglés.
+ */
 public class English implements Language {
+    /**
+     * Obtiene un mensaje correspondiente a la clave proporcionada en inglés.
+     * @param key La clave del mensaje a obtener
+     * @return El mensaje correspondiente a la clave en inglés, o un mensaje predeterminado si la clave no está definida
+     */
     @Override
     public String getMessage(String key) {
         switch (key) {

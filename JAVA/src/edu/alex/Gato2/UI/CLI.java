@@ -6,7 +6,12 @@ import edu.alex.Gato2.UI.Idioma.LanguageFactory;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * La clase CLI (Interfaz de Línea de Comandos) maneja la ejecución del juego Tic-Tac-Toe a través de la consola.
+ * Proporciona métodos para iniciar, ejecutar y controlar el flujo del juego mediante interacción con el usuario.
+ * Ademas hay dos manejo de excepciones para evitar que el usuario ingrese una entrada erronea y evitar que el
+ * Programa falle.
+ */
 public class CLI {
     public static void runGame() {
         Scanner scanner = new Scanner(System.in);

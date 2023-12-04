@@ -1,10 +1,13 @@
 package edu.alex.Gato2.UI.Idioma;
-
+/**
+ * La clase LanguageFactory es una fábrica de idiomas que gestiona el idioma para la obtención de mensajes.
+ * Permite configurar el idioma y obtener mensajes en el idioma seleccionado.
+ */
 public class LanguageFactory {
     private static Language language;
     /**
-     * Configura el idioma seleccionado según la opción proporcionada.
-     * @param languageOption La opción que representa el idioma seleccionado.
+     * Establece el idioma seleccionado.
+     * @param languageOption La opción de idioma seleccionada (1 para español, 2 para inglés)
      */
     public static void setLanguage(int languageOption) {
         switch (languageOption) {
@@ -20,7 +23,11 @@ public class LanguageFactory {
                 language = new Spanish();
         }
     }
-
+    /**
+     * Obtiene un mensaje en el idioma configurado.
+     * @param key La clave del mensaje a obtener
+     * @return El mensaje correspondiente en el idioma seleccionado, o un mensaje indicando que el idioma no está configurado
+     */
     public static String getMessage(String key) {
         if (language != null) {
             return language.getMessage(key);

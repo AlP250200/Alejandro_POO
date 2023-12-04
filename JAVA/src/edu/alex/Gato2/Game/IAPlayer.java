@@ -1,20 +1,34 @@
 package edu.alex.Gato2.Game;
 
 import java.util.Random;
-
+/**
+ * La clase IAPlayer representa a un jugador controlado por la inteligencia artificial (IA).
+ * Realiza movimientos en el juego de acuerdo con una lógica predefinida.
+ */
 public class IAPlayer  extends Player{
-    private Random random;
 
+    /**
+     * Constructor para crear un jugador controlado por la inteligencia artificial.
+     * @param symbol El símbolo que representa al jugador (X o O)
+     */
     public IAPlayer(char symbol) {
         super("Computer", symbol);
-        random = new Random();
     }
+
+    /**
+     * Realiza un movimiento en el tablero utilizando la lógica de la inteligencia artificial.
+     * @param board El tablero de juego en el que se realizará el movimiento
+     */
 
     public void makeMove(Board board) {
         int size = board.getSize();
         char opponentSymbol = (getSymbol() == 'X') ? 'O' : 'X';
 
-        // Lógica para ganar
+        /**
+         *  1. Intenta ganar el juego marcando una celda para obtener una victoria inmediata
+          */
+
+
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (!board.isCellOccupied(i, j)) {
@@ -26,8 +40,10 @@ public class IAPlayer  extends Player{
                 }
             }
         }
+        /**
+         * 2. Bloquea al oponente para evitar que gane en el siguiente movimiento
+         */
 
-        // Lógica para bloquear al oponente
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (!board.isCellOccupied(i, j)) {
@@ -40,14 +56,14 @@ public class IAPlayer  extends Player{
                 }
             }
         }
+        /**
+         * 3. Marca el centro si está disponible para priorizar el control del tablero
+         * En caso contrario realiza movimientos aleatorios
+         */
 
-        // Lógica para buscar movimiento que lleve al empate
         if (!board.isCellOccupied(1, 1)) {
             board.markCell(1, 1, getSymbol());
-            return;
         } else {
-            // Si no es posible hacer un movimiento que lleve al empate,
-            // buscar un espacio vacío y hacer un movimiento allí.
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
                     if (!board.isCellOccupied(i, j)) {
